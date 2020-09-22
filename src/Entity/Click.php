@@ -28,6 +28,20 @@ class Click
     private int $linkId;
 
     /**
+     * @ORM\ManyToOne(
+     *      targetEntity="Link",
+     *      inversedBy="clicks"
+     * )
+     * @ORM\JoinColumn(
+     *      name="link_id",
+     *      referencedColumnName="id",
+     *      onDelete="CASCADE",
+     *      nullable=false
+     * )
+     */
+    private $link;
+
+    /**
      * @ORM\Column(type="string")
      */
     private string $ip;
@@ -47,6 +61,11 @@ class Click
         $this->linkId = $linkId;
 
         return $this;
+    }
+
+    public function getLink(Link $link): Link
+    {
+        return $this->link;
     }
 
     public function setLink(Link $link): self

@@ -41,6 +41,15 @@ class User implements UserInterface
      */
     private string $password;
 
+    /**
+     * @ORM\OneToMany(
+     *      targetEntity="Link",
+     *      mappedBy="user",
+     *      cascade={"persist", "remove"}
+     * )
+     */
+    protected $links;
+
     public function getId(): int
     {
         return $this->id;

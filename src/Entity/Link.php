@@ -46,6 +46,29 @@ class Link
     private string $urlPath;
 
     /**
+     * @ORM\ManyToOne(
+     *      targetEntity="User",
+     *      inversedBy="link"
+     * )
+     * @ORM\JoinColumn(
+     *      name="user_id",
+     *      referencedColumnName="id",
+     *      onDelete="CASCADE",
+     *      nullable=false
+     * )
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(
+     *      targetEntity="Click",
+     *      mappedBy="link",
+     *      cascade={"persist", "remove"}
+     * )
+     */
+    private $clicks;
+
+    /**
      * @ORM\Column(type="boolean", options={"default": true})
      */
     private bool $isActive = self::DEFAULT_IS_ACTIVE;
