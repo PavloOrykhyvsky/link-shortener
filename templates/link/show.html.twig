@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Link{% endblock %}
+
+{% block body %}
+    <h1>{{ link.title }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Redirect url</th>
+                <td><a href="{{ link.redirectUrl }}">{{ link.redirectUrl }}</a></td>
+            </tr>
+            <tr>
+                <th>Url path</th>
+                <td>
+                    <a href="{{ url('link_click', {'urlPath': link.urlPath}) }}">
+                        {{ url('link_click', {'urlPath': link.urlPath}) }}
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th>Redirects total</th>
+                <td>{{ clicksTotal }}</td>
+            </tr>
+            <tr>
+                <th>Unique redirects total</th>
+                <td>{{ uniqueClicksTotal }}</td>
+            </tr>
+            <tr>
+                <th>Is active</th>
+                <td>{{ link.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Is favourite</th>
+                <td>{{ link.isFavourite ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Created at</th>
+                <td>{{ link.createdAt ? link.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated at</th>
+                <td>{{ link.updatedAt ? link.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('link_index') }}">back to list</a>
+
+    <a href="{{ path('link_edit', {'urlPath': link.urlPath}) }}">edit</a>
+
+    {{ include('link/_delete_form.html.twig') }}
+{% endblock %}

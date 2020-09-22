@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Links{% endblock %}
+
+{% block body %}
+    <h1>My links</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Redirect url</th>
+                <th>Url path</th>
+                <th>Is active</th>
+                <th>Is favourite</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for link in links %}
+            <tr>
+                <td>{{ link.title }}</td>
+                <td><a href="{{ link.redirectUrl }}">{{ link.redirectUrl }}</a></td>
+                <td>
+                    <a href="{{ url('link_click', {'urlPath': link.urlPath}) }}">
+                        {{ url('link_click', {'urlPath': link.urlPath}) }}
+                    </a>
+                </td>
+                <td>{{ link.isActive ? 'Yes' : 'No' }}</td>
+                <td>{{ link.isFavourite ? 'Yes' : 'No' }}</td>
+                <td>{{ link.createdAt ? link.createdAt|date('Y-m-d') : '' }}</td>
+                <td>{{ link.updatedAt ? link.updatedAt|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('link_show', {'urlPath': link.urlPath}) }}">show</a>
+                    <a href="{{ path('link_edit', {'urlPath': link.urlPath}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('link_new') }}">Create new</a>
+{% endblock %}

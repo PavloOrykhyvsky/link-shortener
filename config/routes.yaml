@@ -1,3 +1,45 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+### Login ###
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+    methods: GET|POST
+
+logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
+### Registration ###
+register:
+    path: /register
+    controller: App\Controller\Web\RegistrationController::register
+
+### Link ###
+link_index:
+    path: /links
+    controller: App\Controller\Web\LinkController::index
+    methods: GET
+
+link_new:
+    path: /links/new
+    controller: App\Controller\Web\LinkController::new
+    methods: GET|POST
+
+link_show:
+    path: /links/{urlPath}
+    controller: App\Controller\Web\LinkController::show
+    methods: GET
+
+link_edit:
+    path: /links/{urlPath}/edit
+    controller: App\Controller\Web\LinkController::edit
+    methods: GET|POST
+
+link_delete:
+    path: /links{urlPath}
+    controller: App\Controller\Web\LinkController::delete
+    methods: DELETE
+
+### Click ###
+link_click:
+    path: /{urlPath}
+    controller: App\Controller\Web\ClickController::click
