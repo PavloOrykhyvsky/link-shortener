@@ -46,9 +46,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('link_index') }}">back to list</a>
+    <p>
+        <a class="btn btn-info" href="{{ path('link_index') }}">back to list</a>
+        <a class="btn btn-warning" href="{{ path('link_edit', {'urlPath': link.urlPath}) }}">edit</a>
 
-    <a href="{{ path('link_edit', {'urlPath': link.urlPath}) }}">edit</a>
+    </p>
 
     {{ include('link/_delete_form.html.twig') }}
 {% endblock %}

@@ -33,8 +33,8 @@
                 <td>{{ link.createdAt ? link.createdAt|date('Y-m-d') : '' }}</td>
                 <td>{{ link.updatedAt ? link.updatedAt|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('link_show', {'urlPath': link.urlPath}) }}">show</a>
-                    <a href="{{ path('link_edit', {'urlPath': link.urlPath}) }}">edit</a>
+                    <a class="btn btn-info" href="{{ path('link_show', {'urlPath': link.urlPath}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('link_edit', {'urlPath': link.urlPath}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
