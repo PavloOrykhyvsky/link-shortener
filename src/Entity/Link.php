@@ -106,7 +106,7 @@ class Link
      */
     public function setOwner($user): self
     {
-        $this->setUserId($user->getId());
+        $this->user = $user;
 
         return $this;
     }

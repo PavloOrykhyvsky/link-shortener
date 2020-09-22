@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200922142702 extends AbstractMigration
+final class Version20200922152611 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,6 +20,9 @@ final class Version20200922142702 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE SEQUENCE clicks_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE links_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE users_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE clicks (id INT NOT NULL, link_id BIGINT NOT NULL, ip VARCHAR(255) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_20DA1901ADA40271 ON clicks (link_id)');
         $this->addSql('CREATE TABLE links (id INT NOT NULL, user_id INT NOT NULL, title VARCHAR(255) NOT NULL, redirect_url VARCHAR(255) NOT NULL, url_path VARCHAR(255) NOT NULL, is_active BOOLEAN DEFAULT \'true\' NOT NULL, is_favourite BOOLEAN DEFAULT \'false\' NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
@@ -37,6 +40,9 @@ final class Version20200922142702 extends AbstractMigration
         $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE clicks DROP CONSTRAINT FK_20DA1901ADA40271');
         $this->addSql('ALTER TABLE links DROP CONSTRAINT FK_D182A118A76ED395');
+        $this->addSql('DROP SEQUENCE clicks_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE links_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE users_id_seq CASCADE');
         $this->addSql('DROP TABLE clicks');
         $this->addSql('DROP TABLE links');
         $this->addSql('DROP TABLE users');
