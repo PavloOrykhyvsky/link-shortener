@@ -70,7 +70,7 @@ class Click
 
     public function setLink(Link $link): self
     {
-        $this->setLinkId($link->getId());
+        $this->link = $link;
 
         return $this;
     }
